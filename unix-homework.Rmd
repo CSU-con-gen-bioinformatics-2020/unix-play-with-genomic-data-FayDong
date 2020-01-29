@@ -1,0 +1,388 @@
+---
+title: "The \"Getting to Know Unix\" Problem Set"
+output:
+  html_notebook:
+    number_sections: yes
+---
+
+<!-- The following few lines just change some font sizes and colors and give us horizontal scrolling code and output boxes -->
+<style type="text/css">
+h1.title {
+  font-size: 38px;
+  color: DarkRed;
+}
+h1 { /* Header 1 */
+  font-size: 18px;
+  color: DarkBlue;
+}
+pre code, pre, code {
+  white-space: pre !important;
+  overflow-x: scroll !important;
+  word-break: keep-all !important;
+  word-wrap: initial !important;
+}
+</style>
+<!-- Don't edit the stuff above here -->
+
+Please submit code answers in the fenced `bash` code blocks below
+each question/request below.  Other answers (that are not in written code to be evaluated)
+just go in the plain old fenced text block under the question.
+
+When you are done, make sure that all code chunks are evaluated from
+a clean environment (Run -> Run All)
+and then Preview the document to make a clean .nb.html output file.
+That is what I will look at as your submission, so check it to make sure it
+looks right.
+
+Remember, every new fenced code block is going to start running in a shell
+in the project directory, so if you need to change to a new directory, you
+need to put that `cd` command in there.
+
+Finally, there is not TAB completion for bash in the fenced `bash` code blocks.
+So, you probably want to develop your command lines in the terminal window.
+
+I provide an answer for questions 1 and 2 as examples of what we are looking for.
+
+
+# `cd` to your home directory and print its path
+
+```{bash}
+cd ~
+pwd
+```
+
+# Use echo to print `my name is ----` to stdout.  Where `----` is replaced by your name
+
+```{bash}
+echo "my name is Eric"
+```
+
+
+# now, really, answer the above question as yourself
+
+```{bash}
+
+```
+
+# print the absolute path of the top level of the homework directory where this is
+
+```{bash}
+
+```
+
+# list, in long format, all the files and directories in this homework directory
+
+```{bash}
+
+```
+
+Note that some of the file names might look garbled in the Rmarkdown output.  This
+is a consequency of RMarkdown/html not playing well with the shell's way of
+colorizing `ls` output.
+
+# There is a directory called `.git` in here that didn't get listed. List everything again, but make sure `.git` is in the output
+
+```{bash}
+
+```
+
+# What are the other hidden files/directories that show up in the above listing? Just list them in the fenced text block below
+
+```
+
+```
+
+# List (long format) the contents of the directory `.git`
+
+```{bash}
+
+```
+
+# if you wanted to type `ls fastq/DPCh_plate1_A06_S6.R1.fq.gz` on the command line, what is the fewest keystrokes that can get you `fastq/DPCh_plate1_A06_S6.R1.fq.gz` using TAB completion?
+
+I did it in 10 (counting TABs)...
+
+```
+
+```
+
+# make a new directory called `lonely-fastqs`, and inside of that, two directories R1 and R2
+
+```{bash}
+
+```
+
+# Copy (not move) all the read1 (`R1`) fastq files in `fastqs` into `lonely-fastqs/R1` and all the read2 fastqs into `lonely-fastqs/R2`. When you are done, on the next line in the code block, list the contents of `lonely-fastqs/R1` and `lonely-fastqs/R2`
+
+```{bash}
+
+```
+
+# do a recursive, short listing of the contents of `lonely-fastqs`
+
+```{bash}
+
+```
+
+# Use the recursive (-r) option to remove `lonely-fastqs` and its contents
+
+```{bash}
+
+```
+
+# Make two new directories in the top level of the repo called `fq_AB` and `fq_notAB`
+
+```{bash}
+
+```
+
+If you get an error because you already created those directories, that is OK
+directories are there, it's all good...
+
+# Using the `[` `]` copy the R1 files in `fastqs` that belong to sample names (the part immediately after `DPCh_plate1_`) starting with an `A` or `B` to `fq_AB`.  
+
+```{bash}
+
+```
+
+# Now, using negation (`^`) with `[` and `]` copy all the R1 files that don't belong to sample names starting with an `A` or a `B` to `fq_notAB`. When you are done, on the next line in the code block, list the contents of `fq_AB` and `fq_notAB`. 
+
+```{bash}
+
+```
+
+# Remove `fq_AB` and `fq_notAB`, and their contents
+
+```{bash}
+
+```
+
+# Using the `{,}` construct create five directories named `dir_A`, `dir_C`, `dir_E`, `dir_G`, and `dir_I`, and list them (but not their contents) when you are done
+
+```{bash}
+
+```
+
+# Using globbing, remove `dir_A`, `dir_C`, `dir_E`, `dir_G`, and `dir_I`, using a command with 8 characters (including spaces)
+
+```{bash}
+
+```
+
+# Create a directory called `nice_dir_name` and then use `echo`, redirecting its output to create a file called `nice_file_name` inside of `nice_dir_name` whose contents is the string `A string in a file!`
+
+```{bash}
+
+```
+
+# Catenate the contents of `nice_dir_name/nice_file_name` to _stdout_
+
+```{bash}
+
+```
+
+# Create a directory called `bad directory name with spaces`, and then, with redirection, create a file inside it, named `bad file name with spaces` whose contents are the string `Whoa! No spaces, please!`.  Use backslash escaping instead of quoting
+
+```{bash}
+
+```
+
+# Catenate the contents of `bad directory name with spaces/bad file name with spaces`
+
+```{bash}
+
+```
+
+# list the directories (just the names, not the contents (`-d`)) `bad directory name with spaces` and `nice_dir_name`.
+
+```{bash}
+
+```
+
+# Once you are convinced that you can list the directories correctly in your terminal, recall that `ls` command and replace `ls` with `rm -r` to remove them
+
+```{bash}
+
+```
+
+# Why is it a good idea to `ls` things before removing them?
+
+```
+
+```
+
+# If you had just typed `rm -r bad directory name with spaces` what would Unix have tried to remove?
+
+```
+
+```
+
+# There are bam, sam, and fastq files, in the appropriately named directories for sample `A05_S5`. Make a directory named `A05_S5` and copy all those files into that new directory.  List the directory when you are done.
+
+```{bash}
+
+```
+
+# remove the directory `A05_S5` and its contents
+
+```{bash}
+
+```
+
+# Use `ls` to try to list the file `it_aint_here`
+
+```{bash}
+
+```
+
+# Now, do the same thing but redirect _stderr_ into a file called `my_bad.txt`, and then catenate the contents of that file, and then remove it
+
+```{bash}
+
+```
+
+# The files in `fastq` are text files, but they are all gzipped.  Using `gzcat` and a pipe, view the first 8 lines of `fastq/DPCh_plate1_C11_S35.R1.fq.gz`
+
+```{bash}
+
+```
+
+# Do the same to see the first 8 lines of `fastq/DPCh_plate1_C11_S35.R2.fq.gz`
+
+```{bash}
+
+```
+
+# What do you notice about the names of the two reads in each file (Lines 1 and 5, that start with a `@`)
+
+```
+
+```
+
+
+# Print the date, redirect it to a file called `now.txt`, catenate that file to _stdout_ and then remove it
+
+```{bash}
+
+```
+
+# Count the number of lines/words/characters (using `wc`) in the two SAM files in the `sam` directory
+
+```{bash}
+
+```
+
+# Note that gzcat will decompress all files you give it and send the output to _stdout_.  Knowing this, count how many lines are in all the `R1` files in `fastq` (after decompressing them into text files), and also count up all the lines in the `R1` files in `fastq`.  Note they should be the same.
+
+```{bash}
+
+```
+
+# Now, gzcat all the `R1` files in `fastq` and redirect that to a file called `R1_all_via_gzcat.fq` in the top directory of the repo
+
+```{bash}
+
+```
+
+# People are usually familiar with using `cat` to catenate text files.  It turns out that you can also catenate `gzip` compressed files.  The result is another properly gzipped file that can be decompressed.  Catenate all the gzipped `R1` files in `fastq` into a single (still gzipped) file called `R1_all_via_cat.fq.gz`
+
+```{bash}
+
+```
+
+# Copy `R1_all_via_cat.fq.gz` to `copy_of_R1_all_via_cat.fq.gz`
+
+```{bash}
+
+```
+
+# Now, decompress `R1_all_via_cat.fq.gz` into `R1_all_via_cat.fq`
+
+```{bash}
+
+```
+
+# Compute the SHA1 hashes of `R1_all_via_cat.fq` and `R1_all_via_gzcat.fq` to confirm they are identical
+
+```{bash}
+
+```
+
+# But now, gzip `R1_all_via_gzcat.fq` and compare the result to `copy_of_R1_all_via_cat.fq.gz` by computing the SHA1 hash of each
+
+```{bash}
+
+```
+
+Note that this shows that, although the compressed files are not identical, their contents (once decompressed, are identical).
+
+# using `du` with the `-h` (i.e. "human readable" option) print the file sizes of `R1_all_via_cat.fq` and `copy_of_R1_all_via_cat.fq.gz`.
+
+```{bash}
+
+```
+
+# By what factor (approximately) does the compression save storage space on your disk?
+
+```
+
+```
+
+# Remove all files starting with `R1_all` and `copy_of_R1`
+
+```{bash}
+
+```
+
+# Now, print the file sizes (with `du -h`, again) of the files in `bam` to the files in `sam`
+
+```{bash}
+
+```
+
+
+# Print the last 15 lines of `sam/DPCh_plate1_A05_S5.sam` to _stdout_
+
+```{bash}
+
+```
+
+If it all looks like gibberish to you, despair not!  You will be super familiar with
+this file format within a couple of weeks from now.
+
+
+# Print the _first_ 15 lines of `sam/DPCh_plate1_A05_S5.sam` to _stdout_
+
+```{bash}
+
+```
+
+# Catenate the file `count_files.sh` to _stdout_
+
+```{bash}
+
+```
+
+# Note that `count_files.sh` is a short shell script. Try to execute it with `./count_files.sh`
+
+```{bash}
+
+```
+
+Aha! You should have gotten a permission denied error.  99% of the time that occurs because
+the file is not user-executable.
+
+# List (long) `count_files.sh` to see what the permissions are, and then add execute (`x`) permissions to users and groups with the "add-or-subtract permissions syntax" of `chmod`, then long list it again
+
+```{bash}
+
+```
+
+
+
+
+# Use chmod to change permissions of the files in the `silly` directory to match their names. For example for the first one you would use: `chmod 770 FILE-rwxrwx---`.  Use the octal specifiers to `chmod`. Do this for all 5 files (one chmod command for each), and at the end do `ls -l silly` to verify they are correct.
+
+```{bash}
+
+```
