@@ -113,7 +113,7 @@ ng/.git
 I did it in 10 (counting TABs)...
 
 ```
-## I sis it in 4 times.
+## I did it in 4 times.
 
 ```
 
@@ -264,7 +264,7 @@ rm out.txt
 # The files in `fastq` are text files, but they are all gzipped.  Using `gzcat` and a pipe, view the first 8 lines of `fastq/DPCh_plate1_C11_S35.R1.fq.gz`
 
 ```{bash}
-gzcat fastq/DPCh_plate1_C11_S35.R1.fq.gz | head -8
+zcat fastq/DPCh_plate1_C11_S35.R1.fq.gz | head -8
 ## in my terminal, cannot find gzcat command, but use zcat instead!
 ```
 
@@ -293,7 +293,8 @@ cat now.txt
 
 ```{bash}
 ls sam | wc
-## ls -dl sam | wc, why it shows a different result?
+## ls -dl sam | wc
+## why these two command show different results?
 ```
 
 # Note that gzcat will decompress all files you give it and send the output to _stdout_.  Knowing this, count how many lines are in all the `R1` files in `fastq` (after decompressing them into text files), and also count up all the lines in the `R1` files in `fastq`.  Note they should be the same.
@@ -319,27 +320,26 @@ cat fastq/*R1* > R1_all_via_cat.fq.gz/
 
 ```{bash}
 cp -r R1_all_via_cat.fq.gz copy_of_R1_all_via_cat.fq.gz
-## copy_of_R1_all_via_cat.fq.gz is a file or directory?
 ```
 
 # Now, decompress `R1_all_via_cat.fq.gz` into `R1_all_via_cat.fq`
 
 ```{bash}
-zcat R1_all_via_cat.fq.gz > R1_all_via_cat.fq/
+zcat R1_all_via_cat.fq.gz > R1_all_via_cat.fq
 ```
 
 # Compute the SHA1 hashes of `R1_all_via_cat.fq` and `R1_all_via_gzcat.fq` to confirm they are identical
 
 ```{bash}
-shasum R1_all_via_cat.fq R1_all_via_gzcat.fq
-## I cannot use shasum command!
+sha1sum R1_all_via_cat.fq R1_all_via_gzcat.fq
+## I cannot use shasum or SHA1 hash. But I can use sha1sum. I am not sure if it is correct or not.
 ```
 
-# But now, gzip `R1_all_via_gzcat.fq` and compare the result to `copy_of_R1_all_via_cat.fq.gz` by computing the SHA1 hash of each
+# But now, gzip `R1_all_via_gzcat.fq` and compare the result to `R1_all_via_gzcat.fq.gz` by computing the SHA1 hash of each
 
 ```{bash}
-shasum (gzip R1_all_via_gzcat.fq; echo) copy_of_R1_all_via_cat.fq.gz
-## I do not know how to do!
+gzip R1_all_via_gzcat.fq > R1_all_via_gzcat.fq.gz
+sha1sum R1_all_via_gzcat.fq.gz R1_all_via_gzcat.fq.gz
 ```
 
 Note that this shows that, although the compressed files are not identical, their contents (once decompressed, are identical).
@@ -366,16 +366,15 @@ rm R1_all* copy_of_R1*
 
 ```{bash}
 du -h bam
-echo '248K    bam' > sam
-## ???
+echo '248K    bam' > sam/bam_human_readable
 ```
 
 
 # Print the last 15 lines of `sam/DPCh_plate1_A05_S5.sam` to _stdout_
 
 ```{bash}
-tail -15 sam/DPCh_plate1_A05_S5.sam
-## ???
+tail -15 sam/DPCh_plate1_A06_S6.sam
+## I think I accidently change the contents of the file 'DPCh_plate1_A05_S5.sam', so I use another file 'DPCh_plate1_A06_S6.sam' instead. So I can check if I did it correctly. Sorry! 
 ```
 
 If it all looks like gibberish to you, despair not!  You will be super familiar with
@@ -385,7 +384,7 @@ this file format within a couple of weeks from now.
 # Print the _first_ 15 lines of `sam/DPCh_plate1_A05_S5.sam` to _stdout_
 
 ```{bash}
-head -15 sam/DPCh_plate1_A05_S5.sam
+head -15 sam/DPCh_plate1_A06_S6.sam
 ```
 
 # Catenate the file `count_files.sh` to _stdout_
@@ -407,7 +406,8 @@ the file is not user-executable.
 
 ```{bash}
 ls -l count_files.sh
-## cannot use chomd command
+chmod 754 -c count_files.sh
+ls -l count_files.sh
 ```
 
 
@@ -416,5 +416,12 @@ ls -l count_files.sh
 # Use chmod to change permissions of the files in the `silly` directory to match their names. For example for the first one you would use: `chmod 770 FILE-rwxrwx---`.  Use the octal specifiers to `chmod`. Do this for all 5 files (one chmod command for each), and at the end do `ls -l silly` to verify they are correct.
 
 ```{bash}
-
+cd silly/
+ls -l
+chmod 775 DIRdrwxrwxr-x
+chmod 640 FILE-rw-r-----
+chmod 664 FILE-rw-rw-r--
+chmod 740 FILE-rwxr-----
+chmod 770 FILE-rwxrwxr--
+ls -l 
 ```
